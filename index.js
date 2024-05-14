@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/genres", MoviesApiController.getGenres);
+app.get("/api/movies", MoviesApiController.getMovies);
 
 // app.post("/auth/login", loginValidation, handleValidationsErrors, UserController.login);
 // app.post("/auth/register", registerValidation, handleValidationsErrors, UserController.register);
