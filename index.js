@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import 'dotenv/config'
 
-import { filtersValidation } from "./validations.js";
+import { filtersValidation, movieValidation } from "./validations.js";
 
 import { MoviesApiController } from "./controllers/index.js";
 import { handleValidationsErrors } from "./utils/index.js";
@@ -13,15 +13,16 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send("Hello World");
+    res.send("This is a server for the TMDB api and it works fine, have a good movie)");
 });
 
-app.get("/api/genres", MoviesApiController.getGenres);
-app.get("/api/movies", MoviesApiController.getMovies);
+app.get("/genres", MoviesApiController.getGenres);
+app.get("/movies", filtersValidation, handleValidationsErrors, MoviesApiController.getMovies);
+app.get("/movies/:id", movieValidation, handleValidationsErrors, MoviesApiController.getMovie);
 
-// app.post("/auth/login", loginValidation, handleValidationsErrors, UserController.login);
-// app.post("/auth/register", registerValidation, handleValidationsErrors, UserController.register);
-// app.get("/auth/me", checkAuth, UserController.getMe);
+app.get("/*", (req, res) => {
+    res.status(400).send("There is no such way, walk my friend");
+});
 
 app.listen(process.env.PORT, (err) => {
     if (err) {
