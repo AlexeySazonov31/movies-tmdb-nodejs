@@ -35,6 +35,7 @@ export const getMovies = async (req, res) => {
             url += "&vote_average.lte=" + rating_max;
         }
 
+        
         const response = await axios.get(
             url,
             {
