@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/genres", MoviesApiController.getGenres);
+app.get("/image/:path", MoviesApiController.getImage);
 app.get("/movies", filtersValidation, handleValidationsErrors, MoviesApiController.getMovies);
 app.get("/movies/:id", movieValidation, handleValidationsErrors, MoviesApiController.getMovie);
 
