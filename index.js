@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import 'dotenv/config'
 
-import { filtersValidation, movieValidation } from "./validations.js";
+import { filtersValidation, movieValidation, imageValidation } from "./validations.js";
 
 import { MoviesApiController } from "./controllers/index.js";
 import { handleValidationsErrors } from "./utils/index.js";
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/genres", MoviesApiController.getGenres);
-app.get("/image/:path", MoviesApiController.getImage);
+app.get("/image/:mode/:path", imageValidation, handleValidationsErrors, MoviesApiController.getImage);
 app.get("/movies", filtersValidation, handleValidationsErrors, MoviesApiController.getMovies);
 app.get("/movies/:id", movieValidation, handleValidationsErrors, MoviesApiController.getMovie);
 

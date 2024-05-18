@@ -16,5 +16,9 @@ export const filtersValidation = [
 export const movieValidation = [
     param("id", "Invalid ID format").isNumeric(),
 ];
+export const imageValidation = [
+    param("mode", "Invalid size name image").matches(/^(full|middle)$/),
+    param("path", "Invalid path image").isString(),
+];
 
 // page, sort_by, genres, release_year, rating_min, rating_max

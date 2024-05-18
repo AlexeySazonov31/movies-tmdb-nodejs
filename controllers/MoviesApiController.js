@@ -35,7 +35,7 @@ export const getMovies = async (req, res) => {
             url += "&vote_average.lte=" + rating_max;
         }
 
-        
+
         const response = await axios.get(
             url,
             {
@@ -72,7 +72,8 @@ export const getMovie = async (req, res) => {
 export const getImage = async (req, res) => {
     try {
         const path = req.params.path;
-        const url = `https://image.tmdb.org/t/p/w500/${path}`;
+        const mode = req.params.mode;
+        const url = `https://image.tmdb.org/t/p/${mode === "full" ? "original" : "w500"}/${path}`;
         const arrayBuffer = await axios.get(url, {
             responseType: 'arraybuffer',
             headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
@@ -80,7 +81,7 @@ export const getImage = async (req, res) => {
         res.set({
             'Content-Type': 'image/*',
             'Content-Length': arrayBuffer.data.length
-          })
+        })
         res.send(arrayBuffer.data)
     } catch (error) {
         console.log(error)
