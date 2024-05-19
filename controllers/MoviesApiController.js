@@ -1,4 +1,5 @@
 import axios from "axios";
+import 'dotenv/config';
 
 export const getGenres = async (req, res) => {
     try {
