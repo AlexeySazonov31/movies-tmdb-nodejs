@@ -1,1 +1,1 @@
-export * as MoviesApiController from "./MoviesApiController.js";
+export * from "./MoviesApiController.js";
