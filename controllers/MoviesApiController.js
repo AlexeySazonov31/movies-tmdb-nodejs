@@ -4,9 +4,9 @@ import 'dotenv/config';
 export const getGenres = async (req, res) => {
     try {
         const response = await axios.get(
-            "https://api.themoviedb.org/3/genre/movie/list",
+            "https://api.themoviedb.org/3/genre/movie/list?language=en",
             {
-                headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+                headers: { "Authorization": `Bearer ${process.env.API_KEY}`, "Accept": "application/json" }
             }
         );
         res.json(response.data);
@@ -40,14 +40,14 @@ export const getMovies = async (req, res) => {
         const response = await axios.get(
             url,
             {
-                headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+                headers: { "Authorization": `Bearer ${process.env.API_KEY}`, "Accept": "application/json" }
             }
         );
         res.json(response.data);
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            message: "Couldn't get the genres from TMDB",
+            message: "Couldn't get the movies from TMDB",
         })
     }
 }
@@ -58,7 +58,7 @@ export const getMovie = async (req, res) => {
         const response = await axios.get(
             `https://api.themoviedb.org/3/movie/${id}?append_to_response=videos&language=en-US`,
             {
-                headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+                headers: { "Authorization": `Bearer ${process.env.API_KEY}`, "Accept": "application/json" }
             }
         );
         res.json(response.data);

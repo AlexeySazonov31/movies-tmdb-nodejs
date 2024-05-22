@@ -10,8 +10,8 @@ export const filtersValidation = [
         return true;
     }).optional(),
     query("release_year", "Invalid release year format").isNumeric().matches(/^[0-9]{4,4}$/).optional(),
-    query("rating_min", "Invalid rating min format").matches(/^[1-9]0?$/).isNumeric().optional(),
-    query("rating_max", "Invalid rating max format").matches(/^[1-9]0?$/).isNumeric().optional(),
+    query("rating_min", "Invalid rating min format").matches(/^([0-9]\.?[0-9]*|10)$/).isNumeric().optional(),
+    query("rating_max", "Invalid rating max format").matches(/^([0-9]\.?[0-9]*|10)$/).isNumeric().optional(),
 ];
 export const movieValidation = [
     param("id", "Invalid ID format").isNumeric(),
